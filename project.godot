@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="2dplatformer"
-run/main_scene="uid://djynwst7s7kym"
+config/name="Dextheknight"
+run/main_scene="uid://b3ismtk8glt5q"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

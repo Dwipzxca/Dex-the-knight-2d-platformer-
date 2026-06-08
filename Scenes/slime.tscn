@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7sroi2427vkn" path="res://Scripts/slime.gd" id="1_aiwxb"]
 [ext_resource type="Texture2D" uid="uid://d4gy0stot1epf" path="res://Assests/brackeys_platformer_assets/sprites/slime_green.png" id="1_swwnm"]
-[ext_resource type="PackedScene" uid="uid://bck7tc46ktjo2" path="res://Scenes/killzone.tscn" id="2_aiwxb"]
+[ext_resource type="AudioStream" uid="uid://chemwhoctqnct" path="res://Assests/brackeys_platformer_assets/sounds/hurt.wav" id="3_aiwxb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_paq7w"]
 atlas = ExtResource("1_swwnm")
@@ -40,23 +40,21 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r4o34"]
-size = Vector2(10, 13)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_paq7w"]
+size = Vector2(12, 13)
 
 [node name="Slime" type="Node2D" unique_id=1909493128]
 script = ExtResource("1_aiwxb")
+
+[node name="Timer" type="Timer" parent="." unique_id=401037495]
+wait_time = 0.4
+one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1206362538]
 sprite_frames = SubResource("SpriteFrames_e388w")
 autoplay = "default"
 frame = 2
 frame_progress = 0.8984716
-
-[node name="Killzone" parent="." unique_id=1497298915 instance=ExtResource("2_aiwxb")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=22763419]
-position = Vector2(0, 4.5)
-shape = SubResource("RectangleShape2D_r4o34")
 
 [node name="RayCast2DRight" type="RayCast2D" parent="." unique_id=183988981]
 position = Vector2(0, 3)
@@ -65,3 +63,17 @@ target_position = Vector2(11, -1)
 [node name="RayCast2DLeft" type="RayCast2D" parent="." unique_id=2117209218]
 position = Vector2(0, 3)
 target_position = Vector2(-11, -1)
+
+[node name="Enemykillzone" type="Area2D" parent="." unique_id=565558024]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemykillzone" unique_id=261135227]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_paq7w")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=748927393]
+stream = ExtResource("3_aiwxb")
+bus = &"SFX"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Enemykillzone" to="." method="_on_area_2d_body_entered"]

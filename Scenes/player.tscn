@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://3g357a8ib0f7" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://b0vtoug7ikbd" path="res://Assests/brackeys_platformer_assets/sprites/knight.png" id="1_v0iea"]
+[ext_resource type="AudioStream" uid="uid://chemwhoctqnct" path="res://Assests/brackeys_platformer_assets/sounds/hurt.wav" id="3_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://ytidi7dqd0fe" path="res://Assests/brackeys_platformer_assets/sounds/jump.wav" id="4_vgqql"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
 atlas = ExtResource("1_v0iea")
@@ -186,3 +188,13 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1320170050]
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_3smsa")
+
+[node name="enemydeathsound" type="AudioStreamPlayer" parent="." unique_id=1358957720]
+stream = ExtResource("3_6t5aa")
+pitch_scale = 1.61
+bus = &"SFX"
+
+[node name="jumpsound" type="AudioStreamPlayer" parent="." unique_id=85621937]
+stream = ExtResource("4_vgqql")
+volume_db = -9.966
+bus = &"SFX"
